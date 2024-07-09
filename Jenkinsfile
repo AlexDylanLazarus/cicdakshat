@@ -24,12 +24,17 @@ pipeline {
         }
         
         
-        stage('Deploy to k8s'){
-            when{ expression {env.GIT_BRANCH == 'origin/master'}}
-            steps{
-                script{
-                     kubernetesDeploy (configs: 'deploymentservice.yaml' ,kubeconfigId: 'k8sconfigpwd')
-                   
+     stage('Deploy') {
+            steps {
+               script {
+                   def dockerrm = 'sudo docker rm -f My-first-containe221 || true'
+                    def dockerCmd = 'sudo docker run -itd --name My-first-containe2211 -p 8083:80 alexdylanlazarus/endtoendproject25may:v1'
+                    sshagent(['sshkeypair']) {
+                        //chnage the private ip in below code
+                        // sh "docker run -itd --name My-first-containe2111 -p 8083:80 alexdylanlazarus/endtoendproject25may:v1"
+                         sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.37.165 ${dockerrm}"
+                         sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.37.165 ${dockerCmd}"
+                    }
                 }
             }
         }
