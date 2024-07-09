@@ -32,13 +32,7 @@ pipeline {
      stage('Deploy') {
             steps {
                script {
-                   def dockerrm = 'sudo docker rm -f My-first-containe221 || true'
-                    def dockerCmd = 'sudo docker run -dt --name My-first-containe2211 -p 8081:80 alexdylanlazarus/endtoendproject25may:v1'
-                    sshagent(['sshkeypair']) {
-                        //chnage the private ip in below code
-                        // sh "docker run -itd --name My-first-containe2111 -p 8081:80 alexdylanlazarus/endtoendproject25may:v1"
-                         sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.37.165 ${dockerrm}"
-                         sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.37.165 ${dockerCmd}"
+			sh 'docker run -dt --name My-first-containe22161 -p 8085:8080 9julysanlam:v1'
                     }
                 }
             }
